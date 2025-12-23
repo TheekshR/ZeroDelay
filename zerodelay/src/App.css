@@ -1,0 +1,114 @@
+/* General App Styling */
+.App {
+  text-align: center;
+  margin-top: 30px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Subtitle under the main heading */
+.subtitle {
+  color: #666;
+  margin-bottom: 40px;
+}
+/* Logo Styling */
+.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Main Title Styling */
+.title {
+  font-size: 36px;
+  margin: 0px 0;
+  color: #d308b5;
+}
+
+/* Pre-test Form Container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+  gap: 15px;
+}
+
+.form-container label {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  display: block;
+  text-align: left;
+}
+
+/* Dropdown styling */
+select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Start Test / Try Again button */
+.start-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #d308b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.start-btn:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.start-btn:hover:not(:disabled) {
+  background-color: #b20998;
+}
+
+/* Waiting Text Styling */
+.waiting-text {
+  font-size: 20px;
+  color: #d69e2e;
+}
+
+/* Reaction Box Styling */
+/* Bigger reaction box */
+.reaction-box {
+  width: 1500px; /* bigger */
+  height: 600px; /* bigger */
+  margin: 40px auto;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.reaction-box.red {
+  background-color: #e53e3e; /* red */
+  cursor: default;
+}
+
+.reaction-box.green {
+  background-color: #11ce3d; /* green */
+}
+
+.reaction-box.green:active {
+  transform: scale(0.95);
+}
+
+/* Result Display */
+h2 {
+  margin-top: 20px;
+  color: #be17a5;
+}
