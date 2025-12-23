@@ -1,47 +1,52 @@
-/* General App Styling */
 .App {
   text-align: center;
   margin-top: 30px;
   font-family: 'Arial', sans-serif;
+  padding: 0 10px;
+  background-color: transparent;
+  position: relative; 
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Subtitle under the main heading */
+
 .subtitle {
   color: #666;
-  margin-bottom: 40px;
-}
-/* Logo Styling */
-.logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
-/* Main Title Styling */
+.logo {
+  width: 100px;
+  max-width: 25%;
+  height: auto;
+}
+
 .title {
-  font-size: 36px;
+  font-size: 32px;
   margin: 0px 0;
   color: #d308b5;
 }
 
-/* Pre-test Form Container */
+/* ====================
+   Pre-test Form
+==================== */
 .form-container {
   display: flex;
   flex-direction: column;
   max-width: 300px;
+  width: 90%;
   margin: 0 auto;
   gap: 15px;
 }
 
 .form-container label {
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 15px;
   margin-bottom: 5px;
   display: block;
   text-align: left;
 }
 
-/* Dropdown styling */
 select {
   padding: 10px;
   font-size: 16px;
@@ -49,7 +54,9 @@ select {
   border: 1px solid #ccc;
 }
 
-/* Start Test / Try Again button */
+/* ====================
+   Buttons
+==================== */
 .start-btn {
   margin-top: 20px;
   padding: 12px 20px;
@@ -71,23 +78,20 @@ select {
   background-color: #b20998;
 }
 
-/* Waiting Text Styling */
-.waiting-text {
-  font-size: 20px;
-  color: #d69e2e;
-}
-
-/* Reaction Box Styling */
-/* Bigger reaction box */
+/* ====================
+   Reaction Box
+==================== */
 .reaction-box {
-  width: 1500px; /* bigger */
-  height: 600px; /* bigger */
+  width: 90vw;
+  max-width: 800px;
+  height: 50vh;
+  max-height: 500px;
   margin: 40px auto;
   border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 2rem;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -95,20 +99,97 @@ select {
 }
 
 .reaction-box.red {
-  background-color: #e53e3e; /* red */
+  background-color: #e53e3e;
   cursor: default;
 }
 
 .reaction-box.green {
-  background-color: #11ce3d; /* green */
+  background-color: #11ce3d;
 }
 
 .reaction-box.green:active {
   transform: scale(0.95);
 }
 
-/* Result Display */
+.waiting-text {
+  font-size: 1.2rem;
+  color: #d69e2e;
+  margin: 20px 0;
+}
+
 h2 {
   margin-top: 20px;
   color: #be17a5;
+  font-size: 1.5rem;
+}
+
+/* ====================
+   Three Column Layout
+==================== */
+.form-instruction-container.three-columns {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.factors-info, .instructions {
+  max-width: 300px;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.factors-info h2, .instructions h2 {
+  margin-top: 0;
+  color: #d308b5;
+}
+
+.factors-info ul, .instructions ul {
+  padding-left: 20px;
+}
+
+.factors-info li, .instructions li {
+  margin-bottom: 10px;
+}
+
+.instructions .green-text {
+  color: #11ce3d;
+  font-weight: bold;
+}
+
+/* ====================
+   Responsive
+==================== */
+@media (max-width: 1024px) {
+  .form-instruction-container.three-columns {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .instructions, .factors-info, .form-container {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .title { font-size: 28px; }
+  .reaction-box { height: 40vh; font-size: 1.5rem; }
+  .start-btn { font-size: 14px; padding: 10px 16px; }
+  .form-container label { font-size: 16px; }
+  .instructions, .factors-info { font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  .title { font-size: 24px; }
+  .reaction-box { height: 35vh; font-size: 1.2rem; }
+  .start-btn { font-size: 13px; padding: 8px 14px; }
+  .form-container label { font-size: 14px; }
 }

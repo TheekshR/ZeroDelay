@@ -6,9 +6,11 @@ const ReactionChecker = ({ status, handleClick, trialNumber, totalTrials }) => {
   }
 
   if (status === "ready") {
-    return <div className="reaction-box green" onClick={handleClick}>
-      Trial {trialNumber + 1} of {totalTrials}
-    </div>;
+    return (
+      <div className="reaction-box green" onClick={handleClick}>
+        Trial {trialNumber + 1} of {totalTrials}
+      </div>
+    );
   }
 
   return null;
