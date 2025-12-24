@@ -3,6 +3,7 @@ import "./App.css";
 import PreTestForm from "./components/PreTestForm";
 import ReactionChecker from "./components/ReactionChecker";
 import logo from "./assets/ZeroDelayLogo.png";
+import AnimatedBackground from "./components/AnimatedBackground";
 
 function App() {
   const TOTAL_TRIALS = 5;
@@ -74,8 +75,10 @@ function App() {
 
   return (
     <div className="App">
+
+      <AnimatedBackground />
+      
       <img src={logo} alt="ZeroDelay Logo" className="logo" />
-      <p className="subtitle">Measure human reaction time under real-world conditions</p>
 
       {status === "form" && (
         <div className="form-instruction-container three-columns">

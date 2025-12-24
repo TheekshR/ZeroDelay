@@ -1,195 +1,286 @@
-.App {
-  text-align: center;
-  margin-top: 30px;
-  font-family: 'Arial', sans-serif;
-  padding: 0 10px;
-  background-color: transparent;
-  position: relative; 
-  min-height: 100vh;
-  overflow-x: hidden;
+/* =======================
+   Reset & Base
+======================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    #fdfdfd,
+    #f7f7fb,
+    #f5f0fa,
+    #fafafa
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 16s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.App {
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacOS, 'Segoe UI', Roboto, sans-serif;
+  text-align: center;
+  background: transparent;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =======================
+   Typography
+======================= */
+.title {
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  font-weight: 700;
+  color: #d308b5;
+  margin: 1.5rem 0 0.5rem;
+  line-height: 1.1;
+}
 
 .subtitle {
-  color: #666;
-  margin-bottom: 30px;
+  color: #555;
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.5;
 }
 
 .logo {
-  width: 100px;
-  max-width: 25%;
+  width: 90px;
   height: auto;
+  filter: drop-shadow(0 2px 8px rgba(211, 8, 181, 0.15));
 }
 
-.title {
-  font-size: 32px;
-  margin: 0px 0;
-  color: #d308b5;
-}
-
-/* ====================
-   Pre-test Form
-==================== */
+/* =======================
+   Form
+======================= */
 .form-container {
+  width: 100%;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  width: 90%;
+  gap: 1.4rem;
   margin: 0 auto;
-  gap: 15px;
 }
 
 .form-container label {
-  font-size: 18px;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #333;
   text-align: left;
+  margin-bottom: 0.4rem;
 }
 
 select {
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-size: 1.05rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* ====================
+select:focus {
+  outline: none;
+  border-color: #d308b5;
+  box-shadow: 0 0 0 3px rgba(211, 8, 181, 0.15);
+}
+
+/* =======================
    Buttons
-==================== */
+======================= */
 .start-btn {
-  margin-top: 20px;
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #d308b5;
+  width: 100%;
+  max-width: 280px;
+  margin: 1.5rem auto 0;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: white;
+  background: #d308b5;
   border: none;
-  border-radius: 5px;
-  transition: background-color 0.2s ease;
-}
-
-.start-btn:disabled {
-  background-color: #999;
-  cursor: not-allowed;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .start-btn:hover:not(:disabled) {
-  background-color: #b20998;
+  background: #b20998;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(211, 8, 181, 0.3);
 }
 
-/* ====================
+.start-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =======================
    Reaction Box
-==================== */
+======================= */
 .reaction-box {
-  width: 90vw;
-  max-width: 800px;
-  height: 50vh;
-  max-height: 500px;
-  margin: 40px auto;
-  border-radius: 15px;
+  width: min(90vw, 860px);
+  height: min(55vh, 520px);
+  margin: 3rem auto;
+  border-radius: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 600;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-}
-
-.reaction-box.red {
-  background-color: #e53e3e;
-  cursor: default;
+  user-select: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transition: transform 0.12s ease, box-shadow 0.3s ease;
 }
 
 .reaction-box.green {
-  background-color: #11ce3d;
+  background: #11ce3d;
 }
 
-.reaction-box.green:active {
-  transform: scale(0.95);
+.reaction-box.red {
+  background: #e53e3e;
+  cursor: default;
 }
 
+/* =======================
+   Supporting Text
+======================= */
 .waiting-text {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #d69e2e;
-  margin: 20px 0;
+  margin: 2rem 0;
+  font-weight: 500;
 }
 
 h2 {
-  margin-top: 20px;
-  color: #be17a5;
-  font-size: 1.5rem;
-}
-
-/* ====================
-   Three Column Layout
-==================== */
-.form-instruction-container.three-columns {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-
-.factors-info, .instructions {
-  max-width: 300px;
-  width: 100%;
-  text-align: left;
-  font-size: 16px;
-  background-color: #f5f5f5;
-  padding: 15px 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.factors-info h2, .instructions h2 {
-  margin-top: 0;
   color: #d308b5;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
 }
 
-.factors-info ul, .instructions ul {
-  padding-left: 20px;
+/* =======================
+   Three Column Section
+======================= */
+.form-instruction-container.three-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 90%;
+  margin: 2.5rem auto 0;
 }
 
-.factors-info li, .instructions li {
-  margin-bottom: 10px;
+/* Info Cards */
+.factors-info,
+.instructions {
+  background: linear-gradient(180deg, #ffffff, #fafafa);
+  border-radius: 18px;
+  padding: 2rem 2.2rem;
+  text-align: left;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid #f0f0f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.factors-info:hover,
+.instructions:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Card Titles */
+.factors-info h2,
+.instructions h2 {
+  margin-bottom: 1.6rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  text-align: center;
+  color: #222;
+  position: relative;
+}
+
+.factors-info h2::after,
+.instructions h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: #d308b5;
+  margin: 0.6rem auto 0;
+  border-radius: 2px;
+}
+
+/* Card Lists */
+.factors-info ul,
+.instructions ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.factors-info li,
+.instructions li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  line-height: 1.6;
+  color: #444;
+  font-size: 1.02rem;
+}
+
+/* Bullet Accent */
+.factors-info li::before,
+.instructions li::before {
+  content: "•";
+  color: #d308b5;
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+/* Green Instruction Highlight */
 .instructions .green-text {
   color: #11ce3d;
-  font-weight: bold;
+  font-weight: 700;
+  background: rgba(17, 206, 61, 0.1);
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
 }
 
-/* ====================
-   Responsive
-==================== */
-@media (max-width: 1024px) {
-  .form-instruction-container.three-columns {
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .instructions, .factors-info, .form-container {
-    max-width: 90%;
-  }
-}
-
+/* =======================
+   Responsive Tweaks
+======================= */
 @media (max-width: 768px) {
-  .title { font-size: 28px; }
-  .reaction-box { height: 40vh; font-size: 1.5rem; }
-  .start-btn { font-size: 14px; padding: 10px 16px; }
-  .form-container label { font-size: 16px; }
-  .instructions, .factors-info { font-size: 15px; }
+  .App { padding: 1.5rem 1rem; }
+  .reaction-box { height: min(50vh, 420px); margin: 2.5rem auto; }
+  .form-instruction-container.three-columns { gap: 1.5rem; }
+  .start-btn { max-width: none; }
 }
 
 @media (max-width: 480px) {
-  .title { font-size: 24px; }
-  .reaction-box { height: 35vh; font-size: 1.2rem; }
-  .start-btn { font-size: 13px; padding: 8px 14px; }
-  .form-container label { font-size: 14px; }
+  .reaction-box { 
+    height: 40vh; 
+    font-size: clamp(1.8rem, 8vw, 2.4rem); 
+    border-radius: 16px;
+  }
+  .title { margin-top: 1rem; }
+  .subtitle { margin-bottom: 2rem; }
 }

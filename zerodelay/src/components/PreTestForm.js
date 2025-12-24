@@ -5,6 +5,23 @@ const PreTestForm = ({ formData, setFormData, onStart }) => {
     <div className="form-container">
       <h2>Pre-Test Form</h2>
 
+      <label htmlFor="ageRange">Age Range:</label>
+      <select
+        id="ageRange"
+        value={formData.ageRange}
+        onChange={(e) => setFormData({ ...formData, ageRange: e.target.value })}
+      >
+        <option value="">Select age group</option>
+        <option value="0-4">Under 13</option>
+        <option value="5-6">13–17</option>
+        <option value="7-8">18–24</option>
+        <option value="9+">25–34</option>
+        <option value="10+">35–44</option>
+        <option value="11+">45–54</option>
+        <option value="12+">55–64</option>
+        <option value="13+">65 and over</option>
+      </select>
+
       <label htmlFor="sleep">Sleep hours last night:</label>
       <select
         id="sleep"
@@ -43,15 +60,17 @@ const PreTestForm = ({ formData, setFormData, onStart }) => {
         <option value="5">5 (Very tired)</option>
       </select>
 
-      <label htmlFor="gamer">Gamer?</label>
+      <label htmlFor="gamer">Gaming Experience</label>
       <select
         id="gamer"
         value={formData.gamer}
         onChange={(e) => setFormData({ ...formData, gamer: e.target.value })}
       >
         <option value="">Select</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+        <option value="1">No experience</option>
+        <option value="2">Casual Gamer</option>
+        <option value="3">Regular Gamer</option>
+        <option value="4">Hardcore Gamer</option>
       </select>
 
       <button
