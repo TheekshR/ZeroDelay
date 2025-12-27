@@ -2,14 +2,27 @@ const express = require("express");
 const router = express.Router();
 const ReactionTest = require("../models/ReactionTest");
 
-// Save test result
+// POST /api/tests
 router.post("/", async (req, res) => {
   try {
-    const newTest = new ReactionTest(req.body);
+    const { ageRange, sleep, caffeine, fatigue, gamer, reactionTimes, averageReactionTime } = req.body;
+
+    const newTest = new ReactionTest({
+      ageRange,
+      sleep,
+      caffeine,
+      fatigue,
+      gamer,
+      reactionTimes,
+      averageReactionTime
+    });
+
     await newTest.save();
-    res.status(201).json({ message: "Test saved successfully" });
+
+    res.status(201).json({ message: "Test data saved successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Failed to save test" });
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 

@@ -1,20 +1,19 @@
 const mongoose = require("mongoose");
 
-const ReactionTestSchema = new mongoose.Schema({
-  ageRange: String,
-  sleep: String,
-  caffeine: String,
-  fatigue: Number,
-  gamingExperience: String,
+const reactionTestSchema = new mongoose.Schema({
+  // Pre-test form data
+  ageRange: { type: String, required: true },
+  sleep: { type: String, required: true },
+  caffeine: { type: String, required: true },
+  fatigue: { type: String, required: true },
+  gamer: { type: String, required: true },
 
-  reactionTimes: [Number],
-  averageReactionTime: Number,
-  attempts: Number,
+  // Reaction test data
+  reactionTimes: [{ type: Number, required: true }], // array of individual reaction times
+  averageReactionTime: { type: Number, required: true },
 
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  // Optional: timestamp
+  createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("ReactionTest", ReactionTestSchema);
+module.exports = mongoose.model("ReactionTest", reactionTestSchema);
