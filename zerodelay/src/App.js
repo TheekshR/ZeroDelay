@@ -4,6 +4,7 @@ import PreTestForm from "./components/PreTestForm";
 import ReactionChecker from "./components/ReactionChecker";
 import logo from "./assets/ZeroDelayLogo.png";
 import AnimatedBackground from "./components/AnimatedBackground";
+import axios from "axios";
 
 function App() {
   const TOTAL_TRIALS = 5;
@@ -14,6 +15,7 @@ function App() {
     caffeine: "",
     fatigue: "",
     gamer: "",
+    ageRange: "",
   });
   const [startTime, setStartTime] = useState(null);
   const [reactionTime, setReactionTime] = useState(null);
@@ -52,7 +54,7 @@ function App() {
 
   const handleRestart = () => {
     setStatus("form");
-    setFormData({ sleep: "", caffeine: "", fatigue: "", gamer: "" });
+    setFormData({ sleep: "", caffeine: "", fatigue: "", gamer: "", ageRange: "" });
     setTrialTimes([]);
     setTrialNumber(0);
     setReactionTime(null);
@@ -63,6 +65,7 @@ function App() {
       ? Math.round(trialTimes.reduce((a, b) => a + b, 0) / trialTimes.length)
       : 0;
 
+  // Handle spacebar press globally
   useEffect(() => {
     const handleKey = (e) => {
       if (status === "ready" && (e.code === "Space" || e.code === "Enter")) {
@@ -73,16 +76,29 @@ function App() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [status, startTime]);
 
+  // Send data to backend when all trials are finished
+  useEffect(() => {
+    if (status === "finished" && trialTimes.length > 0) {
+      const averageReactionTime = Math.round(trialTimes.reduce((a, b) => a + b, 0) / trialTimes.length);
+      const testData = {
+        ...formData,
+        reactionTimes: trialTimes,
+        averageReactionTime,
+      };
+
+      axios.post("http://localhost:5000/api/tests", testData)
+        .then(() => console.log("Test data saved successfully!"))
+        .catch((err) => console.error("Failed to save test data", err));
+    }
+  }, [status, trialTimes, formData]);
+
   return (
     <div className="App">
-
       <AnimatedBackground />
-      
       <img src={logo} alt="ZeroDelay Logo" className="logo" />
 
       {status === "form" && (
         <div className="form-instruction-container three-columns">
-          {/* Left: Factors Info */}
           <div className="factors-info">
             <h2>Factors Affecting Reaction Time</h2>
             <ul>
@@ -93,7 +109,6 @@ function App() {
             </ul>
           </div>
 
-          {/* Middle: PreTestForm */}
           <PreTestForm
             formData={formData}
             setFormData={setFormData}
@@ -103,7 +118,6 @@ function App() {
             }}
           />
 
-          {/* Right: How to do the test */}
           <div className="instructions">
             <h2>How to Do the Test</h2>
             <ul>
@@ -115,7 +129,7 @@ function App() {
               <li>
                 Press the <strong>spacebar</strong> for more accurate results; mouse clicks are slightly slower.
               </li>
-              <li>Complete all 5 trials to see your average reaction time.</li>
+              <li>Complete all {TOTAL_TRIALS} trials to see your average reaction time.</li>
             </ul>
           </div>
         </div>
