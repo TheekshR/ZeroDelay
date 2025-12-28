@@ -17,11 +17,11 @@ router.post("/", async (req, res) => {
       averageReactionTime
     });
 
-    await newTest.save();
+    const savedTest = await newTest.save();
 
     res.status(201).json({ message: "Test data saved successfully" });
   } catch (error) {
-    console.error(error);
+    console.error("Error saving test:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
