@@ -12,6 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/tests", require("./routes/testRoutes"));
+app.use("/api/export-csv", require("./routes/exportCsv"));
 
 // MongoDB connection
 mongoose
@@ -28,3 +29,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
