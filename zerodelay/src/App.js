@@ -54,7 +54,7 @@ function App() {
 
   const handleRestart = () => {
     setStatus("form");
-    setFormData({ sleep: "", caffeine: "", fatigue: "", gamer: "", ageRange: "" });
+    setFormData({sleep: "", caffeine: "", fatigue: "", gamer: "", ageRange: "" });
     setTrialTimes([]);
     setTrialNumber(0);
     setReactionTime(null);
