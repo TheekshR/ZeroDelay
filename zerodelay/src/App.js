@@ -102,6 +102,7 @@ function App() {
           <div className="factors-info">
             <h2>Factors Affecting Reaction Time</h2>
             <ul>
+              <li><strong>Age:</strong> Reaction time generally slows with age.</li>
               <li><strong>Sleep:</strong> Less sleep increases reaction delay.</li>
               <li><strong>Caffeine:</strong> Can temporarily improve alertness.</li>
               <li><strong>Fatigue:</strong> High fatigue slows responses.</li>
